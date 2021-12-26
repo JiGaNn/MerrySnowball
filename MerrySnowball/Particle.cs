@@ -7,21 +7,23 @@ using System.Drawing;
 
 namespace MerrySnowball
 {
-    class Particle
+    public class Particle
     {
         public float X;
         public float Y;
         public int Radius;
-        public float Speed;
-        public float Direction;
+        public float SpeedX;
+        public float SpeedY;
         public float Life;
 
         public static Random rnd = new Random();
 
         public Particle()
         {
-            Direction = rnd.Next(360);
-            Speed = 1 + rnd.Next(10);
+            var direction = (double)rnd.Next(360);
+            var speed = 1 + rnd.Next(10);
+            SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
+            SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
             Radius = 2 + rnd.Next(10);
             Life = 20 + rnd.Next(100);
         }
