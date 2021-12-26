@@ -37,9 +37,9 @@ namespace MerrySnowball
             // 
             // picDisplay
             // 
-            this.picDisplay.Location = new System.Drawing.Point(5, 4);
+            this.picDisplay.Location = new System.Drawing.Point(-1, -3);
             this.picDisplay.Name = "picDisplay";
-            this.picDisplay.Size = new System.Drawing.Size(792, 441);
+            this.picDisplay.Size = new System.Drawing.Size(804, 456);
             this.picDisplay.TabIndex = 0;
             this.picDisplay.TabStop = false;
             this.picDisplay.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picDisplay_MouseMove);

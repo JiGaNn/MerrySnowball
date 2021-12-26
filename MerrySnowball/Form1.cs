@@ -45,7 +45,10 @@ namespace MerrySnowball
             {
                 if(particles.Count < 500)
                 {
-                    var particle = new Particle();
+                    var particle = new ParticleColorful();
+
+                    particle.FromColor = Color.Goldenrod;
+                    particle.ToColor = Color.FromArgb(0, Color.DarkMagenta);
 
                     particle.X = MousePositionX;
                     particle.Y = MousePositionY;
@@ -70,7 +73,7 @@ namespace MerrySnowball
             UpdateState();
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
-                g.Clear(Color.White);
+                g.Clear(Color.Black);
                 Render(g);
             }
             picDisplay.Invalidate();
