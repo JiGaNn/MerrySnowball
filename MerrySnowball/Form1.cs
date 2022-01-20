@@ -12,6 +12,7 @@ namespace MerrySnowball
 {
     public partial class Form1 : Form
     {
+        List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
         public Form1()
         {
@@ -19,6 +20,20 @@ namespace MerrySnowball
 
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
 
+            this.emitter = new Emitter // создаю эмиттер и привязываю его к полю emitter
+            {
+                Direction = 0,
+                Spreading = 10,
+                SpeedMin = 10,
+                SpeedMax = 10,
+                ColorFrom = Color.Gold,
+                ColorTo = Color.FromArgb(0, Color.Red),
+                ParticlesPerTick = 10,
+                X = picDisplay.Width / 2,
+                Y = picDisplay.Height / 2,
+            };
+            emitters.Add(emitter);
+            
             emitter = new TopEmitter { GravitationY = 0.25f, Width = picDisplay.Width };
             
             emitter.impactPoints.Add(new GravityPoint { X = (int)(picDisplay.Width * 0.75), Y = picDisplay.Height / 2 });
@@ -38,8 +53,14 @@ namespace MerrySnowball
         }
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-            emitter.MousePositionX = e.X;
-            emitter.MousePositionY = e.Y;
+            emitter.X = e.X;
+            emitter.Y = e.Y;
+        }
+
+        private void tbDirection_Scroll(object sender, EventArgs e)
+        {
+            emitter.Direction = tbDirection.Value;
+            lblDirection.Text = $"{tbDirection.Value}°";
         }
     }
 }
