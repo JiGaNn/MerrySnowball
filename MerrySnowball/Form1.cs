@@ -35,10 +35,13 @@ namespace MerrySnowball
             emitters.Add(emitter);
             
             emitter = new TopEmitter { GravitationY = 0.25f, Width = picDisplay.Width };
-            
-            emitter.impactPoints.Add(new GravityPoint { X = (int)(picDisplay.Width * 0.75), Y = picDisplay.Height / 2 });
-            emitter.impactPoints.Add(new GravityPoint { X = (int)(picDisplay.Width * 0.25), Y = picDisplay.Height / 2 });
-            emitter.impactPoints.Add(new AntiGravityPoint { X = picDisplay.Width / 2, Y = picDisplay.Height / 2 });
+
+            emitter.impactPoints.Add(new GravityPoint { X = (int)(picDisplay.Width / 6), Y = picDisplay.Height * 3 / 5});
+            emitter.impactPoints.Add(new GravityPoint { X = (int)(picDisplay.Width / 2), Y = picDisplay.Height * 3 / 5 });
+            emitter.impactPoints.Add(new GravityPoint { X = (int)(picDisplay.Width * 5 / 6), Y = picDisplay.Height * 3 / 5 });
+
+            emitter.impactPoints.Add(new GravityPoint { X = (int)(picDisplay.Width / 3), Y = picDisplay.Height / 3 });
+            emitter.impactPoints.Add(new GravityPoint { X = (int)(picDisplay.Width * 2 / 3), Y = picDisplay.Height / 3 });
             
         }
         private void timer1_Tick(object sender, EventArgs e)
@@ -55,12 +58,6 @@ namespace MerrySnowball
         {
             emitter.X = e.X;
             emitter.Y = e.Y;
-        }
-
-        private void tbDirection_Scroll(object sender, EventArgs e)
-        {
-            emitter.Direction = tbDirection.Value;
-            lblDirection.Text = $"{tbDirection.Value}°";
         }
     }
 }

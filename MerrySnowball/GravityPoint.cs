@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace MerrySnowball
 {
@@ -18,6 +19,16 @@ namespace MerrySnowball
 
             particle.SpeedX += (gx) * Power / r2;
             particle.SpeedY += (gy) * Power / r2;
+        }
+        public override void Render(Graphics g)
+        {
+            g.DrawEllipse(
+                new Pen(Color.White),
+                X - Power / 2,
+                Y - Power / 2,
+                Power,
+                Power
+            );
         }
     }
 }
