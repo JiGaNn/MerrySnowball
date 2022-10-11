@@ -36,13 +36,14 @@ namespace MerrySnowball
             
             emitter = new TopEmitter { GravitationY = 0.25f, Width = picDisplay.Width };
 
-            emitter.impactPoints.Add(new GravityPoint { X = (int)(picDisplay.Width / 6), Y = picDisplay.Height * 3 / 5});
-            emitter.impactPoints.Add(new GravityPoint { X = (int)(picDisplay.Width / 2), Y = picDisplay.Height * 3 / 5 });
-            emitter.impactPoints.Add(new GravityPoint { X = (int)(picDisplay.Width * 5 / 6), Y = picDisplay.Height * 3 / 5 });
-
             emitter.impactPoints.Add(new GravityPoint { X = (int)(picDisplay.Width / 3), Y = picDisplay.Height / 3 });
             emitter.impactPoints.Add(new GravityPoint { X = (int)(picDisplay.Width * 2 / 3), Y = picDisplay.Height / 3 });
             
+            emitter.impactPoints.Add(new AntiGravityPoint { X = (int)(picDisplay.Width / 6), Y = picDisplay.Height * 3 / 5, color = Color.Red });
+            emitter.impactPoints.Add(new AntiGravityPoint { X = (int)(picDisplay.Width / 2), Y = picDisplay.Height * 3 / 5, color = Color.YellowGreen });
+            emitter.impactPoints.Add(new AntiGravityPoint { X = (int)(picDisplay.Width * 5 / 6), Y = picDisplay.Height * 3 / 5, color = Color.Purple });
+
+            emitter.CountPortals();
         }
         private void timer1_Tick(object sender, EventArgs e)
         {

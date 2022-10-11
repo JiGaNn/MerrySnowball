@@ -30,9 +30,13 @@ namespace MerrySnowball
         public float GravitationX = 0;
         public float GravitationY = 1;
         public int ParticlesCount = 500;
+        List<AntiGravityPoint> portals = new List<AntiGravityPoint>();
+
         public virtual void ResetParticle(Particle particle)
         {
             particle.Life = Particle.rnd.Next(LifeMin, LifeMax);
+            (particle as ParticleColorful).FromColor = ColorFrom;
+            (particle as ParticleColorful).ToColor = ColorTo;
             particle.X = X;
             particle.Y = Y;
 
@@ -71,6 +75,10 @@ namespace MerrySnowball
                     foreach (var point in impactPoints)
                     {
                         point.ImpactParticle(particle);
+                        if(point is GravityPoint)
+                        {
+                            (point as GravityPoint).TpIn(particle as ParticleColorful, portals);
+                        }
                     }
 
                     particle.SpeedX += GravitationX;
@@ -96,6 +104,17 @@ namespace MerrySnowball
             foreach(var point in impactPoints)
             {
                 point.Render(g);
+            }
+        }
+
+        public void CountPortals()
+        {
+            foreach (var point in impactPoints)
+            {
+                if(point is AntiGravityPoint)
+                {
+                    portals.Add(point as AntiGravityPoint);
+                }
             }
         }
     }

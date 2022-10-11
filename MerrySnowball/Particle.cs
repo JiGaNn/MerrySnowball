@@ -41,7 +41,7 @@ namespace MerrySnowball
             b.Dispose();
         }
     }
-    class ParticleColorful : Particle
+    public class ParticleColorful : Particle
     {
         public Color FromColor;
         public Color ToColor;

@@ -10,6 +10,7 @@ namespace MerrySnowball
     public class GravityPoint : IImpactPoint
     {
         public int Power = 100;
+
         public override void ImpactParticle(Particle particle)
         {
             float gx = X - particle.X;
@@ -20,6 +21,7 @@ namespace MerrySnowball
             particle.SpeedX += (gx) * Power / r2;
             particle.SpeedY += (gy) * Power / r2;
         }
+
         public override void Render(Graphics g)
         {
             g.DrawEllipse(
@@ -29,6 +31,21 @@ namespace MerrySnowball
                 Power,
                 Power
             );
+        }
+
+        public void TpIn(ParticleColorful particle,  List<AntiGravityPoint> portals)
+        {
+            Random random = new Random();
+            int index = random.Next(portals.Count);
+            AntiGravityPoint tpOut = portals[index];
+
+            var isIn = (Math.Abs(X - particle.X) < 50 && Math.Abs(Y - particle.Y) < 50);
+            if (isIn)
+            {
+                particle.FromColor = tpOut.color;
+                particle.X = tpOut.X;
+                particle.Y = tpOut.Y;
+            }
         }
     }
 }
