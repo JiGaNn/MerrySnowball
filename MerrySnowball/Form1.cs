@@ -20,21 +20,9 @@ namespace MerrySnowball
 
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
 
-            this.emitter = new Emitter // создаю эмиттер и привязываю его к полю emitter
-            {
-                Direction = 0,
-                Spreading = 10,
-                SpeedMin = 10,
-                SpeedMax = 10,
-                ColorFrom = Color.Gold,
-                ColorTo = Color.FromArgb(0, Color.Red),
-                ParticlesPerTick = 10,
-                X = picDisplay.Width / 2,
-                Y = picDisplay.Height / 2,
-            };
-            emitters.Add(emitter);
-            
             emitter = new TopEmitter { GravitationY = 0.25f, Width = picDisplay.Width };
+
+            emitters.Add(emitter);
 
             emitter.impactPoints.Add(new GravityPoint { X = (int)(picDisplay.Width / 3), Y = picDisplay.Height / 3 });
             emitter.impactPoints.Add(new GravityPoint { X = (int)(picDisplay.Width * 2 / 3), Y = picDisplay.Height / 3 });
@@ -54,11 +42,6 @@ namespace MerrySnowball
                 emitter.Render(g);
             }
             picDisplay.Invalidate();
-        }
-        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
-        {
-            emitter.X = e.X;
-            emitter.Y = e.Y;
         }
     }
 }
