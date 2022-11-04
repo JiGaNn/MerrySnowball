@@ -12,6 +12,9 @@ namespace MerrySnowball
 {
     public partial class Form1 : Form
     {
+        private int MousePositionX = 0;
+        private int MousePositionY = 0;
+
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
         public Form1()
@@ -42,6 +45,32 @@ namespace MerrySnowball
                 emitter.Render(g);
             }
             picDisplay.Invalidate();
+        }
+
+        private void picDisplay_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                MousePositionX = e.X;
+                MousePositionY = e.Y;
+                emitter.impactPoints.Add(new AntiGravityPoint { X = MousePositionX, Y = MousePositionY, color = Color.BurlyWood });
+                emitter.portals.Add(new AntiGravityPoint { X = MousePositionX, Y = MousePositionY, color = Color.BurlyWood });
+            }
+            if (e.Button == MouseButtons.Right)
+            {
+                try
+                {
+                    emitter.impactPoints.RemoveAt(5);
+                    emitter.portals.RemoveAt(3);
+                } catch(Exception ex)
+                {
+
+                }
+            }
+            if (e.Button == MouseButtons.Middle)
+            {
+                emitter.GravitationY = -(emitter.GravitationY);
+            }
         }
     }
 }

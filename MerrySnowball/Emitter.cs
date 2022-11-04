@@ -28,7 +28,7 @@ namespace MerrySnowball
         public float GravitationX = 0;
         public float GravitationY = 1;
         public int ParticlesCount = 500;
-        List<AntiGravityPoint> portals = new List<AntiGravityPoint>();
+        public List<AntiGravityPoint> portals = new List<AntiGravityPoint>();
 
         public virtual void ResetParticle(Particle particle)
         {

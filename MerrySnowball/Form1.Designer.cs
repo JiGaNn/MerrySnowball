@@ -48,7 +48,7 @@ namespace MerrySnowball
             this.picDisplay.Size = new System.Drawing.Size(805, 456);
             this.picDisplay.TabIndex = 0;
             this.picDisplay.TabStop = false;
-            //this.picDisplay.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picDisplay_MouseMove);
+            this.picDisplay.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picDisplay_MouseDown);
             // 
             // Form1
             // 
